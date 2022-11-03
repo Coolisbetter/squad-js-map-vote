@@ -225,8 +225,8 @@ export default class MapVote extends DiscordBasePlugin {
     async onPlayerDisconnected() {
         if (!this.votingEnabled) return;
         await this.server.updatePlayerList();
-        this.clearVote();
-        if (new Date() - this.lastMapUpdate > 5 * 1000) this.updateNextMap();
+        //this.clearVote();
+        //if (new Date() - this.lastMapUpdate > 5 * 1000) this.updateNextMap();
     }
     async timeframeOptionOverrider() {
         const orOpt = { ...this.or_options };
@@ -618,6 +618,9 @@ export default class MapVote extends DiscordBasePlugin {
     }
 
     async endVotingAsync() {
+        if (this.votingEnabled == false) {
+            return;
+        }
         this.endVotingGently();
         await this.logWinnerToDiscord(this.options.voteWinnerBroadcastMessage + this.formatFancyLayer(Layers.layers.find((l) => l.layerid == this.updateNextMap())))
     }
