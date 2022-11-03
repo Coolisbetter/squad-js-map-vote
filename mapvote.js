@@ -622,7 +622,7 @@ export default class MapVote extends DiscordBasePlugin {
             return;
         }
         this.endVotingGently();
-        await this.logWinnerToDiscord(this.options.voteWinnerBroadcastMessage + this.formatFancyLayer(Layers.layers.find((l) => l.layerid == this.updateNextMap())))
+        await this.logWinnerToDiscord(this.formatFancyLayer(Layers.layers.find((l) => l.layerid == this.updateNextMap())))
     }
 
     endVotingGently() {
